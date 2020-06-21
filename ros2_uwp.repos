@@ -61,7 +61,7 @@ repositories:
     version: eloquent
   ros2/rmw_implementation:
     type: git
-    url: https://github.com/ros2/rmw_implementation.git
+    url: https://github.com/ooeygui/rmw_implementation.git
     version: eloquent
   ros2/rosidl:
     type: git
