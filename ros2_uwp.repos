@@ -5,7 +5,7 @@ repositories:
     version: v1.0.11
   eProsima/Fast-RTPS:
     type: git
-    url: https://github.com/theseankelly/Fast-RTPS.git
+    url: https://github.com/ooeygui/Fast-RTPS.git
     version: eloquent-windows
   eProsima/foonathan_memory_vendor:
     type: git
