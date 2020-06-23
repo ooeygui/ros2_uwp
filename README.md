@@ -135,6 +135,18 @@ Finally, source the tools install environment to add them to your path:
 ```
 call c:\ros2_uwp\tools\install\local_setup.bat
 ```
+### Build ROS2 for Unity Editor
+The Unity Editor is a Desktop application, not a UWP application. If you would like to run ROS2 from within Unity, you'll need to build desktop binaries. 
+
+First, if you have built binaries for UWP, delete the `build` and `install` folders as we are changing the binary type. 
+
+``` batch
+colcon build --merge-install --packages-ignore rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rclcpp_components ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace --cmake-args -DRMW_IMPLEMENTATION=rmw_fastrtps_cpp -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF
+```
+
+When this is completed, you can copy the required output binaries into your unity project.
+
+> documentation for this is included in the ros_msft_mrtk repository.
 
 ### Build ROS2 for UWP
 
