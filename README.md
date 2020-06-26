@@ -135,6 +135,17 @@ Finally, source the tools install environment to add them to your path:
 ```
 call c:\ros2_uwp\tools\install\local_setup.bat
 ```
+### Build ROS2 Isolated
+
+From the same command prompt (admin VS dev prompt with the ROS2 tools setup
+script sourced), clone the `ros2_uwp` source packages
+```
+cd c:\ros2_uwp\target
+mkdir src
+curl -sk https://raw.githubusercontent.com/theseankelly/ros2_uwp/master/ros2_uwp.repos > ros2_uwp.repos
+vcs import src < ros2_uwp.repos
+```
+
 ### Build ROS2 for Unity Editor
 The Unity Editor is a Desktop application, not a UWP application. If you would like to run ROS2 from within Unity, you'll need to build desktop binaries. 
 
@@ -149,15 +160,6 @@ When this is completed, you can copy the required output binaries into your unit
 > documentation for this is included in the ros_msft_mrtk repository.
 
 ### Build ROS2 for UWP
-
-From the same command prompt (admin VS dev prompt with the ROS2 tools setup
-script sourced), clone the `ros2_uwp` source packages
-```
-cd c:\ros2_uwp\target
-mkdir src
-curl -sk https://raw.githubusercontent.com/theseankelly/ros2_uwp/master/ros2_uwp.repos > ros2_uwp.repos
-vcs import src < ros2_uwp.repos
-```
 
 And build ROS2 for UWP, replacing `%ROS2_ARCH%` with `Win32`, `x64`, or `ARM`
 ```
