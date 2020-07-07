@@ -79,24 +79,9 @@ which have been proven to build and function within a UWP application container
 ## Build Instructions
 
 ### Setup
+Visit Microsoft's [Installing ROS2 on Windows](https://ms-iot.github.io/ROSOnWindows/GettingStarted/SetupRos2.html). 
 
-First, install Visual Studio 2017 (Community is fine) and enable the 'Desktop
-development with C++ workflow'. **NOTE**: Visual Studio 2019 ought to work fine
-but is untested for these instructions.
-
-Visit the official [Installing ROS2 on Windows](https://index.ros.org/doc/ros2/Installation/Dashing/Windows-Development-Setup/)
-instructions and follow the steps, **skipping** the installation of any third
-party binaries (OpenSSL, asio, cuint, eigen, tinyxml, log4cxx) These binaries
-have not been compiled for UWP. Instead, these instructions will build all
-necessary third party dependencies from source.
-
-**NOTE**: If you have previously installed binary packages for the various
-third party libraries (OpenSSL, asio, cuint, eigen, tinyxml, log4cxx) they
-should be uninstalled prior to attempting a UWP build to avoid accidentally
-pulling non-UWP binaries into the build. You might also have success simply
-removing the entries from the cmake cache in the registry:
-`HKEY_LOCAL_MACHINE\SOFTWARE\Kitware\CMake\Packages` -- prepending each entry
-with an underscore will prevent `find_package()` from picking up the libraries.
+You'll create two build environments - one which includes ROS2 and one that only includes Visual Studio.
 
 ### Create A Workspace
 
@@ -111,18 +96,12 @@ mkdir c:\ros2_uwp\target
 
 ### Build The Tools
 
-Open up a Visual Studio 2017 developer prompt as administrator. You can do this
-from the start menu, or by running the following from an administrator command
-prompt:
-```
-"c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\vsdevcmd"
-```
+Clone the build tools into the tools workspace directory. These will be needed to create a stand alone ROS install for UWP.
 
-Next, clone the `build_tools` source packages
 ```
 cd c:\ros2_uwp\tools
 mkdir src
-curl -sk https://raw.githubusercontent.com/theseankelly/ros2_uwp/master/build_tools.repos > build_tools.repos
+wget https://raw.githubusercontent.com/theseankelly/ros2_uwp/master/build_tools.repos
 vcs import src < build_tools.repos
 ```
 
@@ -142,7 +121,7 @@ script sourced), clone the `ros2_uwp` source packages
 ```
 cd c:\ros2_uwp\target
 mkdir src
-curl -sk https://raw.githubusercontent.com/theseankelly/ros2_uwp/master/ros2_uwp.repos > ros2_uwp.repos
+wget https://raw.githubusercontent.com/theseankelly/ros2_uwp/master/ros2_uwp.repos
 vcs import src < ros2_uwp.repos
 ```
 
@@ -162,7 +141,9 @@ When this is completed, you can copy the required output binaries into your unit
 ### Build ROS2 for UWP
 
 And build ROS2 for UWP, replacing `%ROS2_ARCH%` with `Win32`, `x64`, or `ARM`
+
 ```
+set ROS2_ARCH=x64
 colcon build --merge-install --packages-ignore rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog rclcpp_components ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace --cmake-args -A %ROS2_ARCH% -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop
 ```
 
