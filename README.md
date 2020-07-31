@@ -144,6 +144,8 @@ cd c:\ros2_uwp\target
 mkdir src
 curl -sk https://raw.githubusercontent.com/ooeygui/ros2_uwp/master/ros2_uwp.repos > ros2_uwp.repos
 vcs import src < ros2_uwp.repos
+xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
+set CMAKE_PREFIX_PATH=C:\opt\rosdeps\x64\include\eigen3;%CMAKE_PREFIX_PATH%
 ```
 
 ### Build ROS2 for Unity Editor

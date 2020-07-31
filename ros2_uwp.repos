@@ -109,7 +109,7 @@ repositories:
     version: master
   ros2_dotnet/ros2_dotnet:
     type: git
-    url: https://github.com/ooeygui/ros2_dotnet
+    url: https://github.com/Camelron/ros2_dotnet
     version: master
   ros2dotnet/dotnet_cmake_module:
     type: git
@@ -119,3 +119,32 @@ repositories:
     type: git
     url: https://github.com/esteve/ament_cmake_export_assemblies.git
     version: master
+  ros2/geometry2:
+    type: git
+    url: https://github.com/ros2/geometry2.git
+    version: eloquent
+  ros2/python_cmake_module:
+    type: git
+    url: https://github.com/ros2/python_cmake_module.git
+    version: eloquent
+  ros2/console_bridge_vendor:
+    type: git
+    url: https://github.com/ros2/console_bridge_vendor.git
+    version: eloquent
+  ros2/console_bridge:
+    type: git
+    url: https://github.com/ros/console_bridge.git
+    version: master
+  ros2/message_filters:
+    type: git
+    url: https://github.com/ros2/message_filters.git
+    version: eloquent
+  ros2/orocos_kinematics_dynamics:
+    type: git
+    url: https://github.com/ros2/orocos_kinematics_dynamics.git
+    version: eloquent
+  ros2/eigen3_cmake_module:
+    type: git
+    url: https://github.com/ros2/eigen3_cmake_module.git
+    version: eloquent
+  
